@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciel 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffd6e8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 30px 20px;
+      border-radius: 25px;
+      width: 90%;
+      max-width: 360px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 14px 26px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+      box-shadow: 0 5px 15px rgba(255,77,109,0.5);
+    }
+
+    .no {
+      background: #fff;
+      color: #ff4d6d;
+      position: absolute;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .celebrate {
+      font-size: 2em;
+      animation: pop 0.6s ease forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp 6s linear forwards;
+      opacity: 0.85;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 0.85;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Ciel 💕</h1>
+    <p>
+      Every moment with you feels special…<br>
+      so I have one important question 🥺
+    </p>
+
+    <h2 id="question">Will you be my Valentine?</h2>
+
+    <button class="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="no" id="noBtn">No 🙈</button>
+
+    <div id="answer" class="hidden">
+      <div class="celebrate">💐💘✨</div>
+      <h2>YAYYYY!!!</h2>
+      <p>
+        You make my world so much brighter 💞<br>
+        I love you, Ciel 💖
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+
+    noBtn.addEventListener('touchstart', moveButton);
+    noBtn.addEventListener('mouseover', moveButton);
+
+    function moveButton() {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 100);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    function sayYes() {
+      document.getElementById('question').classList.add('hidden');
+      document.querySelector('.yes').classList.add('hidden');
+      noBtn.classList.add('hidden');
+      document.getElementById('answer').classList.remove('hidden');
+    }
+
+    // Floating hearts generator
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = Math.random() > 0.5 ? '💖' : '💘';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = 18 + Math.random() * 22 + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 350);
+  </script>
+
+</body>
+</html>
+
